@@ -1,10 +1,10 @@
-# COAIA Memory Test Environment
+# coaia-spiral Test Environment
 
-This test environment allows you to easily test the COAIA Memory system with Claude Code CLI.
+This test environment allows you to easily test the coaia-spiral system with Claude Code CLI.
 
 ## Setup Instructions
 
-1. **Build the COAIA Memory system** (from parent directory):
+1. **Build the coaia-spiral system** (from parent directory):
    ```bash
    cd ..
    npm run build
@@ -21,6 +21,10 @@ This test environment allows you to easily test the COAIA Memory system with Cla
    ```
 
 4. **Test the system** - Try these natural language commands with Claude:
+   - "Initialize a COAIA project"
+   - "Show me the status of my COAIA projects"
+   - "Create a structural tension chart in the 'learning' context to master advanced Python concepts by November 30, 2025. My current reality is I'm comfortable with Python basics but need to deepen my understanding of advanced topics. I'll start by completing an advanced async/await course."
+   - "List all charts in the 'learning' context"
    - "Show me my active charts"
    - "Create a chart to learn Spanish in 4 months"
    - "Mark the guitar buying action as complete"
@@ -30,7 +34,7 @@ This test environment allows you to easily test the COAIA Memory system with Cla
 
 - **`.mcp.json`** - MCP configuration linking to the COAIA Memory server
 - **`CLAUDE.md`** - Instructions and guidelines for Claude when testing
-- **`test-memory.jsonl`** - Sample structural tension chart data
+- **`.coaia/charts.jsonl`** - Sample structural tension chart data
 - **`README.md`** - This usage guide
 
 ## Sample Data
@@ -43,7 +47,25 @@ The test environment includes a demo structural tension chart:
 
 ## Testing Scenarios
 
-### Basic Chart Operations
+### COAIA Project and Context Management
+```
+You: "Initialize a COAIA project"
+Claude: [uses initialize_coaia_project tool]
+
+You: "Show me the status of my COAIA projects"
+Claude: [uses list_coaia_projects tool]
+```
+
+### Context-Aware Chart Operations
+```
+You: "Create a structural tension chart in the 'learning' context to master advanced Python concepts by November 30, 2025. My current reality is I'm comfortable with Python basics but need to deepen my understanding of advanced topics. I'll start by completing an advanced async/await course."
+Claude: [uses create_chart_in_context tool]
+
+You: "List all charts in the 'learning' context"
+Claude: [uses list_charts_in_context tool]
+```
+
+### Basic Chart Operations (Default Context)
 ```
 You: "Show me my guitar learning progress"
 Claude: [uses get_chart_progress tool]
@@ -76,5 +98,5 @@ Claude should:
 ## Troubleshooting
 
 - If tools aren't available, check that the parent directory build succeeded
-- If memory file errors occur, delete `test-memory.jsonl` to reset
+- If memory file errors occur, delete `.coaia/charts.jsonl` to reset
 - Check `.mcp.json` path matches your directory structure

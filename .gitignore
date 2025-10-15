@@ -52,9 +52,11 @@ coverage/
 # Optional eslint cache
 .eslintcache
 
-# Memory files (except examples)
+# Memory files (except examples and coaia templates)
 *.jsonl
 !example*.jsonl
+!.coaia/*.jsonl
+!.coaia/**/*.jsonl
 
 # Local documentation
 PUBLISHING.md
@@ -79,3 +81,4 @@ Thumbs.db
 .mcp.json
 .hch
 .mcp*
+.env

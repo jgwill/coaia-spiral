@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Simple test of coaia-memory functionality
+// Simple test of coaia-spiral functionality
 import { spawn } from 'child_process';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';

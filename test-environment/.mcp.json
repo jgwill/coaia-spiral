@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "coaia-memory": {
+    "my-spiral-test-project": {
       "command": "node",
-      "args": ["../dist/index.js", "--memory-path", "./test-memory.jsonl"],
+      "args": ["../dist/index.js", "--memory-path", "/src/coaia-spiral/test-environment/.coaia/"],
       "autoapprove": [
         "create_structural_tension_chart",
         "telescope_action_step", 

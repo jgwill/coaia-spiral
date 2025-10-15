@@ -12,7 +12,8 @@
       "mcp__coaia-memory__list_active_charts",
       "mcp__dummy-coaia-memory-charts__list_active_charts",
       "mcp__dummy-coaia-memory-charts__add_observations",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "WebFetch(domain:docs.claude.com)"
     ],
     "additionalDirectories": [
       "/media/jgi/F/Dropbox/jgt/edu/llm_mastery/arenas_250706/CreatingYourLifeCourse",
@@ -21,6 +22,6 @@
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "coaia-memory"
+    "coaia-spiral"
   ]
 }

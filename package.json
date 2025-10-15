@@ -1,18 +1,18 @@
 {
-  "name": "coaia-memory",
-  "version": "2.2.12",
-  "description": "Creative-Oriented AI Assistant Memory - MCP server with structural tension charts and advancing pattern support, based on principles by Robert Fritz",
+  "name": "coaia-spiral",
+  "version": "3.0.2",
+  "description": "Creative-Oriented AI Assistant Memory - MCP server with structural tension charts and advancing spiral patterns, based on principles by Robert Fritz",
   "license": "MIT",
   "author": "J.Guillaume D.-Isabelle <jgi@jgwill.com> (https://github.com/jgwill)",
   "contributors": [
     "Shane Holloman (original mcp-knowledge-graph foundation)",
     "Robert Fritz (structural tension methodology - https://robertfritz.com)"
   ],
-  "homepage": "https://github.com/miadisabelle/mcp-knowledge-graph",
-  "bugs": "https://github.com/miadisabelle/mcp-knowledge-graph/issues",
+  "homepage": "https://github.com/jgwill/coaia-spiral",
+  "bugs": "https://github.com/jgwill/coaia-spiral/issues",
   "type": "module",
   "bin": {
-    "coaia-memory": "dist/index.js"
+    "coaia-spiral": "dist/index.js"
   },
   "files": [
     "dist"
@@ -25,7 +25,8 @@
     "structural tension",
     "creative",
     "creative-orientation",
-    "structural-dynamics"
+    "structural-dynamics",
+    "spiral"
   ],
   "scripts": {
     "build": "npm run build:guidance && tsc && shx chmod +x dist/*.js",

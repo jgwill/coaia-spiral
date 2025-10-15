@@ -1,12 +1,12 @@
-# COAIA Memory - Creative-Oriented AI Assistant Memory System
+# COAIA Spiral - Creative-Oriented AI Assistant Memory System
 
-> MCP server implementing structural tension charts and advancing pattern support based on Robert Fritz's creative methodology
+> MCP server implementing structural tension charts and advancing spiral patterns based on Robert Fritz's creative methodology
 
-## What is COAIA Memory?
+## What is COAIA Spiral?
 
-COAIA Memory extends traditional knowledge graphs with **structural tension charts** - a powerful framework for organizing creative processes around desired outcomes rather than problem-solving. Based on Robert Fritz's structural tension methodology, it helps AI assistants maintain creative orientation and support advancing patterns.
+COAIA Spiral extends traditional knowledge graphs with **structural tension charts** - a powerful framework for organizing creative processes around desired outcomes rather than problem-solving. Based on Robert Fritz's structural tension methodology, it helps AI assistants maintain creative orientation and support advancing spiral patterns.
 
-**Current Version**: v2.3.0 (LLM-Intelligent Enhancement)
+**Current Version**: v2.4.0 (COAIA Project Organization) - **Now includes .coaia directory support for organized structural tension chart management**
 
 ## Key Features
 
@@ -39,26 +39,58 @@ COAIA Memory extends traditional knowledge graphs with **structural tension char
 - Search and retrieval capabilities
 - Compatible with existing MCP knowledge graph workflows
 
+## 🏗️ COAIA Project Organization
+
+**NEW in v2.4.0**: Project-specific structural tension chart organization with `.coaia` directories:
+
+### Why .coaia Directories?
+Unlike generic memory storage, COAIA focuses specifically on **structural tension charts** and creative goal achievement:
+
+- **`.coaia` directories**: Organize structural tension charts within projects
+- **Chart lifecycle management**: Separate active charts from completed learning examples
+- **Template patterns**: Reusable structural tension patterns for common goals
+- **Project-specific creativity**: Each project can have its own creative goals and patterns
+
+### Chart Organization Structure
+```
+my-project/
+├── .coaia/
+│   ├── active-charts.jsonl      # Current structural tension charts
+│   ├── completed-charts.jsonl   # Successfully achieved charts (learning examples)
+│   └── templates/
+│       └── common-goals.jsonl   # Reusable patterns for desired outcomes
+└── src/
+```
+
+### Benefits of COAIA Organization
+- **Focus on Creation**: Specifically designed for structural tension methodology, not generic data storage
+- **Learning from Success**: Completed charts become templates for future goal achievement
+- **Project Context**: Charts organized within the projects where they're relevant
+- **Pattern Recognition**: Build libraries of successful creative patterns
+
 ## Installation & Usage
 
 ### As NPX Package
 ```bash
-npx coaia-memory --memory-path ./my-charts.jsonl
+npx coaia-spiral --memory-path ./my-charts.jsonl
 ```
 
 ### In Claude Desktop Config
 ```json
 {
   "mcpServers": {
-    "coaia-memory": {
+    "coaia-spiral": {
       "command": "npx",
-      "args": ["-y", "coaia-memory", "--memory-path", "/path/to/your/charts.jsonl"],
+      "args": ["-y", "coaia-spiral", "--memory-path", "/path/to/your/charts.jsonl"],
       "autoapprove": [
         "create_structural_tension_chart",
         "telescope_action_step", 
         "mark_action_complete",
         "get_chart_progress",
         "list_active_charts",
+        "initialize_coaia_project",
+        "list_coaia_projects", 
+        "move_chart_to_completed",
         "create_entities",
         "create_relations",
         "add_observations"
@@ -71,19 +103,39 @@ npx coaia-memory --memory-path ./my-charts.jsonl
 ### Local Development
 ```bash
 git clone <repository>
-cd coaia-memory
+cd coaia-spiral
 npm install
 npm run build
 ```
 
+### Project-Local Chart Organization
+
+In any project, initialize COAIA organization:
+
+1. **Ensure project markers exist** (`.git`, `package.json`, etc.)
+2. **Use AI assistant to run**: `initialize_coaia_project`
+3. **Start creating charts**: Charts will be organized in `.coaia/active-charts.jsonl`
+4. **Archive completed charts**: Use `move_chart_to_completed` to preserve successful patterns
+
+Benefits:
+- Charts organized by project context
+- Completed charts become learning templates
+- Separate active work from archived successes
+- Project-specific creative goal management
+
 ## Core Tools
 
-### Structural Tension Chart Management
+### Structural Tension Chart Management (COAIA)
 - `create_structural_tension_chart` - Create new chart with outcome, reality, and action steps
 - `telescope_action_step` - Break down action steps into detailed sub-charts
 - `mark_action_complete` - Complete actions and update current reality
 - `get_chart_progress` - Monitor chart advancement
 - `list_active_charts` - Overview of all active charts
+
+### COAIA Project Organization (NEW)
+- `initialize_coaia_project` - Set up .coaia directory structure for organized charts
+- `list_coaia_projects` - Show project status and chart organization
+- `move_chart_to_completed` - Archive completed charts as learning examples
 
 ### Traditional Knowledge Graph Operations
 - `create_entities` - Add new entities (people, concepts, events)
@@ -197,6 +249,6 @@ claude-code  # Launch with pre-configured MCP setup
 
 ## Philosophy
 
-COAIA Memory embodies the principle that **structure determines behavior**. By organizing memory around structural tension rather than problem-solving patterns, it naturally supports creative advancement and helps users build the life they want to create.
+COAIA Spiral embodies the principle that **structure determines behavior**. By organizing memory around structural tension rather than problem-solving patterns, it naturally supports creative advancement and helps users build the life they want to create.
 
 The system recognizes that structural tension is the fundamental organizing principle of the creative process - not a problem to be solved, but a generative force to be harnessed.
