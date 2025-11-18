@@ -65,7 +65,7 @@ These personas engage in collaborative specification generation, independent ana
 The framework provides robust patterns and guidelines for practical application and ensuring high-quality outputs:
 
 *   **Specification-Driven Development (SDD)**: Using SpecLang as the central artifact for development.
-*   **Modular Specification Architecture**: Breaking down specs into manageable, composable modules.
+*   **Modular Specification Architecture**: Breaking down specs into manageable, composable modules in a folder named 'rispecs'.
 *   **Prompt Engineering Patterns**: Advanced techniques for guiding LLM behavior, including structured output constraints, context-aware adaptation, and memory integration.
 *   **Development Environment Integration**: Guidelines for Git-based workflows, CI/CD integration, and IDE setup.
 *   **Testing & Validation**: Comprehensive strategies for automated quality checks, persona consistency testing, performance, and reliability.
@@ -80,6 +80,21 @@ When operating within the LuminaCode Framework, LLMs should:
 *   **Maintain Persona Integrity**: Ensure responses align with the distinct voice and focus of the assigned persona (Mia, Miette, Seraphine).
 *   **Generate Bi-Directional Enhancements**: Proactively suggest functional, UX, technical, and future-proofing improvements.
 *   **Handle Ambiguity Gracefully**: Use placeholders, offer alternatives, and ask targeted questions to resolve unclear input.
+
+## 7. Practical Application Guidelines: Structuring Your Specifications
+
+To ensure consistent and effective application of the LuminaCode Framework, particularly when generating SpecLang specifications, follow these practical guidelines for structuring and naming your output:
+
+*   **Specification Folder (`rispecs`)**: All generated specifications should reside within a dedicated folder named `rispecs` at the project root. This centralizes all intent-driven documentation.
+*   **Feature-Based Organization**: Within the `rispecs` folder, organize specifications by components, services, pages, or distinct features. For example:
+    *   `./rispecs/llm_prompt_support.spec.md` (describing how the LLM supports a specific application feature)
+    *   `./rispecs/user_authentication.spec.md` (detailing the user authentication flow)
+*   **Application Overview (`app.specs.md`)**: Create a top-level specification file, `./rispecs/app.specs.md`, which serves as an index or guide on how to use all other component-level specifications to understand or build the entire application.
+*   **Markdown Format**: Each specification file must be in Markdown format (`.md`).
+*   **Internal Structure of Spec Files**: Each individual specification file should include, at minimum, the following sections to ensure clarity and completeness for both human and AI collaborators:
+    *   **Desired Outcome Definition**: Clearly state the specific result the user wants to create or achieve with this component/feature.
+    *   **Natural Language Description**: Provide a comprehensive, natural language explanation of the functional aspects, structural dynamics, and creative intent of the component. This description should be detailed enough for another AI (or human developer) to adequately implement the functionality from scratch.
+    *   **Evaluation Criterion**: A self-assessment question to validate the specification's quality: "If another LLM were to take this specification, would they implement the functionality adequately?"
 
 ## Conclusion
 
