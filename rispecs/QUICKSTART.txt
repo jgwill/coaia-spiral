@@ -1,0 +1,125 @@
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        RISPECS QUICKSTART GUIDE                         │
+│                                                                          │
+│  COAIA Spiral - RISE v1.0 Compliant Specifications                      │
+│  Located: ./rispecs/                                                    │
+└─────────────────────────────────────────────────────────────────────────┘
+
+🎯 IN 5 MINUTES:
+
+  1. Read: INDEX.md (sections "For LLM Agent Users")
+  2. Understand: What is "structural tension"?
+  3. See: One creative advancement scenario
+  4. Remember: Creative orientation ≠ problem-solving
+
+📖 IN 30 MINUTES:
+
+  1. Read: INDEX.md completely
+  2. Read: app.spec.md sections on:
+     - Desired Outcome Definition
+     - Natural Progression
+     - Feature Inventory
+  3. Skim: structural_tension_chart.spec.md
+  4. Review: Creative Advancement Scenarios
+
+🏗️ FOR IMPLEMENTATION:
+
+  1. Read: All files in dependency order (see INDEX.md)
+  2. Study: Quality Criteria sections
+  3. Reference: Creative Advancement Scenarios for behavior validation
+  4. Check: Specification Independence sections for what to build
+
+🎓 TO LEARN METHODOLOGY:
+
+  1. Read: llm_guidance.spec.md
+  2. Study: All Creative Advancement Scenarios
+  3. Practice: Validation examples in structural_tension_chart.spec.md
+  4. Reference: llm_guidance.spec.md for teaching others
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 QUICK REFERENCE: THE CORE IDEA
+
+  COAIA enables users to CREATE desired outcomes through:
+  
+  ✅ Structural Tension = (Desired Outcome) - (Current Reality)
+  ✅ Natural Progression = Tension drives action → Reality changes
+  ✅ Advancing Patterns = Success builds on success
+  ✅ Telescoping = Complex goals decompose while maintaining vision
+  ✅ Contexts = Organize goals by life/work domains
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 MOST IMPORTANT CONCEPT: Creative Orientation
+
+  ❌ WRONG (Problem-Solving): "Fix communication problems"
+  ✅ RIGHT (Creative): "Establish clear, effective communication"
+  
+  Why? Problem-solving creates back-and-forth (oscillation).
+  Creative orientation creates forward movement (advancement).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 FILES AT A GLANCE:
+
+  INDEX.md
+    ├─ Read first for navigation
+    └─ Pick your reading path by role
+
+  app.spec.md
+    ├─ System overview & philosophy
+    └─ Feature organization
+
+  structural_tension_chart.spec.md
+    ├─ How charts work
+    └─ Validation examples
+
+  telescoping_action_steps.spec.md
+    ├─ Breaking down complex goals
+    └─ Completion cascade explained
+
+  context_aware_storage.spec.md
+    ├─ Organizing goals by domain
+    └─ Cross-context patterns
+
+  progress_tracking.spec.md
+    ├─ How progress is monitored
+    └─ Automatic reality updates
+
+  llm_guidance.spec.md
+    ├─ Teaching methodology
+    └─ Validation principles
+
+  COMPLETION_SUMMARY.md
+    ├─ What was delivered
+    └─ How to use this spec set
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔑 KEY VALIDATION RULES:
+
+  Desired Outcome: NO problem-solving language
+    ❌ fix, solve, eliminate, prevent, stop, avoid, reduce, remove
+    ✅ establish, create, develop, build, achieve, manifest
+
+  Current Reality: NO readiness assumptions  
+    ❌ ready to, prepared to, all set, ready for, set to
+    ✅ currently, never, completed, have, are, situation is
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 REMEMBER:
+
+  "Tolerate discrepancy, tension, and delayed resolution"
+  - Robert Fritz
+
+  This means: Keep honest gap between where you are and where you 
+  want to be. This gap (tension) creates natural forward movement 
+  without requiring willpower.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ THAT'S IT!
+
+  Next step: Open INDEX.md and choose your reading path.
+
