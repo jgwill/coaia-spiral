@@ -1,4 +1,4 @@
-# Claude Code SDK: A Gemini LLM Guide to Creative Agent Development
+# Claude Code SDK: A Gemini LLM Guide to Creative Agent Development (DEPRECATED, see: llms-claude-agent-sdk-v2.md)
 
 > A comprehensive guide for LLMs to understand, design, and generate creative, functional, and idiomatic agents using the Claude Code SDK, emphasizing a generative orientation and structural thinking.
 
@@ -308,10 +308,14 @@ Be vigilant against these common pitfalls that can lead to oscillating patterns 
 - **`llms-creative-orientation.txt`**: Deep dive into the principles of creative vs. reactive approaches.
 - **`llms-structural-thinking.gemini.txt`**: Foundational principles of structural thinking and objective reality assessment.
 - **`llms-narrative-remixing.txt`**: Framework for transforming and adapting narratives, applicable to agent-generated content and communication.
-- **`llms-rise-framework.txt`**: Comprehensive framework for creative-oriented reverse engineering, intent extraction, specification creation, and export optimization.
+- **`llms-rise-framework.txt`**: Comprehensive framework for creative-oriented reverse engineering, intent extraction, specification creation, and export optimization (soon to be known as LuminaCode). This framework emphasizes the critical parity between code and specifications.
 - **`llms-tryad-mia-miette-ripple-full.gemini.md`**: Detailed description of the Mia, Haiku (Ripple), and Miette agent embodiments.
 - **Claude Code SDK Documentation**:
     - `sdk-overview.md`
     - `sdk-python.md`
     - `sdk-typescript.md`
     - `sdk-headless.md`
+
+DEPRECATED: see `llms-claude-agent-sdk-v2.md`
+
+
