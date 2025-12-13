@@ -43,6 +43,31 @@ OPTIONS:
    --memory-path PATH    Custom path for memory storage (default: ./memory.jsonl)
    --help, -h           Show this help message
 
+ENVIRONMENT VARIABLES:
+   COAIA_TOOLS          Comma or space separated list of tool groups and/or individual tools to enable
+                        (default: "STC_TOOLS,init_llm_guidance")
+
+   COAIA_DISABLED_TOOLS Tools to exclude from enabled set (comma or space separated)
+
+TOOL GROUPS:
+   STC_TOOLS            All structural tension chart tools (11 tools) - recommended for creative work
+   KG_TOOLS             All knowledge graph tools (9 tools) - for traditional entity/relation work
+   CORE_TOOLS           Essential chart tools only (4 tools): list, create, add_action, mark_complete
+   PROJECT_TOOLS        Project organization tools (3 tools): initialize, list, move_to_completed
+
+EXAMPLES OF TOOL FILTERING:
+   # Full creative toolkit (STC + KG tools)
+   COAIA_TOOLS="STC_TOOLS KG_TOOLS" coaia-spiral --memory-path ./memory.jsonl
+
+   # Minimal chart-only setup
+   COAIA_TOOLS="CORE_TOOLS" coaia-spiral --memory-path ./memory.jsonl
+
+   # STC tools but exclude specific ones
+   COAIA_TOOLS="STC_TOOLS" COAIA_DISABLED_TOOLS="delete_entities,delete_relations" coaia-spiral
+
+   # Cherry-pick individual tools
+   COAIA_TOOLS="create_structural_tension_chart add_action_step list_active_charts" coaia-spiral
+
 CORE FEATURES:
    
    📊 Structural Tension Charts
@@ -177,6 +202,76 @@ let memoryPath = argv['memory-path'];
 if (memoryPath && !isAbsolute(memoryPath)) {
     memoryPath = path.resolve(process.cwd(), memoryPath);
 }
+
+// Tool filtering configuration
+const TOOL_GROUPS = {
+  STC_TOOLS: [
+    'create_structural_tension_chart',
+    'telescope_action_step',
+    'add_action_step',
+    'remove_action_step',
+    'mark_action_complete',
+    'get_chart_progress',
+    'list_active_charts',
+    'update_action_progress',
+    'update_current_reality',
+    'update_desired_outcome',
+    'update_action_step_title'
+  ],
+  KG_TOOLS: [
+    'create_entities',
+    'create_relations',
+    'add_observations',
+    'delete_entities',
+    'delete_observations',
+    'delete_relations',
+    'search_nodes',
+    'open_nodes',
+    'read_graph'
+  ],
+  CORE_TOOLS: [
+    'list_active_charts',
+    'create_structural_tension_chart',
+    'add_action_step',
+    'mark_action_complete'
+  ],
+  PROJECT_TOOLS: [
+    'initialize_coaia_project',
+    'list_coaia_projects',
+    'move_chart_to_completed'
+  ]
+};
+
+function getEnabledTools(): Set<string> {
+  const enabledTools = new Set<string>();
+
+  // Check for COAIA_DISABLED_TOOLS env var (comma or space separated)
+  const disabledStr = process.env.COAIA_DISABLED_TOOLS || '';
+  const disabledTools = new Set(
+    disabledStr.split(/[,\s]+/).filter(t => t.trim())
+  );
+
+  // Determine which tools to enable
+  const enabledGroupsStr = process.env.COAIA_TOOLS || 'STC_TOOLS,init_llm_guidance';
+  const enabledGroups = enabledGroupsStr.split(/[,\s]+/).filter(t => t.trim());
+
+  enabledGroups.forEach(group => {
+    const groupTools = (TOOL_GROUPS as Record<string, string[]>)[group];
+    if (groupTools) {
+      groupTools.forEach(tool => enabledTools.add(tool));
+    } else {
+      // Assume it's an individual tool name
+      enabledTools.add(group);
+    }
+  });
+
+  // Remove disabled tools
+  disabledTools.forEach(tool => enabledTools.delete(tool));
+
+  return enabledTools;
+}
+
+const enabledTools = getEnabledTools();
 
 // Define the path to the JSONL file
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
