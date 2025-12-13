@@ -76,29 +76,62 @@ npx coaia-spiral --memory-path ./my-charts.jsonl
 ```
 
 ### In Claude Desktop Config
+
+**Minimal Setup (STC Tools Only - Default):**
 ```json
 {
   "mcpServers": {
     "coaia-spiral": {
       "command": "npx",
-      "args": ["-y", "coaia-spiral", "--memory-path", "/path/to/your/charts.jsonl"],
-      "autoapprove": [
-        "create_structural_tension_chart",
-        "telescope_action_step", 
-        "mark_action_complete",
-        "get_chart_progress",
-        "list_active_charts",
-        "initialize_coaia_project",
-        "list_coaia_projects", 
-        "move_chart_to_completed",
-        "create_entities",
-        "create_relations",
-        "add_observations"
-      ]
+      "args": ["-y", "coaia-spiral", "--memory-path", "/path/to/charts.jsonl"]
     }
   }
 }
 ```
+Exposes 11 STC tools + `init_llm_guidance`
+
+**Full Setup (STC + Knowledge Graph Tools):**
+```json
+{
+  "mcpServers": {
+    "coaia-spiral": {
+      "command": "npx",
+      "args": ["-y", "coaia-spiral", "--memory-path", "/path/to/charts.jsonl"],
+      "env": {
+        "COAIA_TOOLS": "STC_TOOLS,KG_TOOLS,PROJECT_TOOLS,init_llm_guidance"
+      }
+    }
+  }
+}
+```
+
+**Core Tools Only (Minimal):**
+```json
+{
+  "mcpServers": {
+    "coaia-spiral": {
+      "command": "npx",
+      "args": ["-y", "coaia-spiral", "--memory-path", "/path/to/charts.jsonl"],
+      "env": {
+        "COAIA_TOOLS": "CORE_TOOLS,init_llm_guidance"
+      }
+    }
+  }
+}
+```
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `COAIA_TOOLS` | Tool groups/names to enable (comma/space separated) | `STC_TOOLS,init_llm_guidance` |
+| `COAIA_DISABLED_TOOLS` | Tools to exclude from enabled set | - |
+
+**Tool Groups:**
+- `STC_TOOLS` - Structural tension chart tools (11)
+- `KG_TOOLS` - Knowledge graph tools (9)
+- `CORE_TOOLS` - Essential tools only (4): `list_active_charts`, `create_structural_tension_chart`, `add_action_step`, `mark_action_complete`
+- `PROJECT_TOOLS` - Project organization (3): `initialize_coaia_project`, `list_coaia_projects`, `move_chart_to_completed`
 
 ### Local Development
 ```bash

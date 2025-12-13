@@ -112,7 +112,7 @@ This reorganization connects COAIA Spiral to broader ecosystem:
 
 ## What is COAIA Spiral?
 
-COAIA Spiral extends traditional knowledge graphs with **structural tension charts** - a powerful framework for organizing creative processes around desired outcomes rather than problem-solving. Based on Robert Fritz's structural tension methodology, it helps AI assistants maintain creative orientation and support advancing spiral patterns.
+COAIA Spiral extends traditional knowledge graphs with **structural tension charts** - a powerful framework for organizing creative processes with a creative orientation (generative focus on desired outcomes) rather than problem-solving orientation (reactive focus on elimination). Based on Robert Fritz's structural tension methodology, it helps AI assistants maintain creative orientation and support advancing spiral patterns.
 
 ## Key Features
 
@@ -455,7 +455,7 @@ This transforms COAIA Spiral from **outcome-focused** to **journey-aware**, main
 
 ## Philosophy
 
-COAIA Spiral embodies the principle that **structure determines behavior**. By organizing memory around structural tension rather than problem-solving patterns, it creates a natural advancing structure that supports creative manifestation.
+COAIA Spiral embodies the principle that **structure determines behavior**. By organizing memory around structural tension with a creative orientation (generative) rather than problem-solving patterns (reactive), it creates a natural advancing structure that supports creative manifestation.
 
 The system recognizes that structural tension is the fundamental organizing principle of the creative process - not a problem to be solved, but a generative force to be harnessed.
 
