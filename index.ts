@@ -776,10 +776,18 @@ Current Reality: "${currentReality}"
     initialActionSteps?: string[]
   ): Promise<{ chartId: string; parentChart: string }> {
     const graph = this.shouldUseCoaiaPersistence() ? await this.loadCoaiaGraph() : await this.loadGraph();
-    const actionStep = graph.entities.find(e => e.name === actionStepName && e.entityType === 'action_step');
+    let actionStep = graph.entities.find(e => e.name === actionStepName && (e.entityType === 'action_step' || e.entityType === 'desired_outcome'));
+    
+    // If not found by exact name, try matching by observation text (for natural language descriptions)
+    if (!actionStep) {
+      actionStep = graph.entities.find(e => 
+        (e.entityType === 'action_step' || e.entityType === 'desired_outcome') &&
+        e.observations.some(obs => obs === actionStepName || obs.toLowerCase().includes(actionStepName.toLowerCase()))
+      );
+    }
     
     if (!actionStep || !actionStep.metadata?.chartId) {
-      throw new Error(`Action step ${actionStepName} not found or not properly configured`);
+      throw new Error(`Action step "${actionStepName}" not found or not properly configured. Please use the exact action step description as shown in list_active_charts`);
     }
 
     const parentChartId = actionStep.metadata.chartId;
@@ -811,10 +819,18 @@ Current Reality: "${currentReality}"
   async markActionStepComplete(actionStepName: string): Promise<void> {
     const graph = this.shouldUseCoaiaPersistence() ? await this.loadCoaiaGraph() : await this.loadGraph();
     // An "action step" can be a 'desired_outcome' of a sub-chart, or a simple 'action_step' entity.
-    const actionStep = graph.entities.find(e => e.name === actionStepName && (e.entityType === 'action_step' || e.entityType === 'desired_outcome'));
+    let actionStep = graph.entities.find(e => e.name === actionStepName && (e.entityType === 'action_step' || e.entityType === 'desired_outcome'));
+
+    // If not found by exact name, try matching by observation text (for natural language descriptions)
+    if (!actionStep) {
+      actionStep = graph.entities.find(e => 
+        (e.entityType === 'action_step' || e.entityType === 'desired_outcome') &&
+        e.observations.some(obs => obs === actionStepName || obs.toLowerCase().includes(actionStepName.toLowerCase()))
+      );
+    }
 
     if (!actionStep) {
-      throw new Error(`Action step ${actionStepName} not found`);
+      throw new Error(`Action step "${actionStepName}" not found. Please use the exact action step description as shown in list_active_charts`);
     }
 
     const chartId = actionStep.metadata?.chartId;
@@ -961,10 +977,18 @@ Current Reality: "${currentReality}"
     updateCurrentReality?: boolean
   ): Promise<void> {
     const graph = await this.loadGraph();
-    const actionStep = graph.entities.find(e => e.name === actionStepName && (e.entityType === 'action_step' || e.entityType === 'desired_outcome'));
+    let actionStep = graph.entities.find(e => e.name === actionStepName && (e.entityType === 'action_step' || e.entityType === 'desired_outcome'));
+    
+    // If not found by exact name, try matching by observation text (for natural language descriptions)
+    if (!actionStep) {
+      actionStep = graph.entities.find(e => 
+        (e.entityType === 'action_step' || e.entityType === 'desired_outcome') &&
+        e.observations.some(obs => obs === actionStepName || obs.toLowerCase().includes(actionStepName.toLowerCase()))
+      );
+    }
     
     if (!actionStep) {
-      throw new Error(`Action step ${actionStepName} not found`);
+      throw new Error(`Action step "${actionStepName}" not found. Please use the exact action step description as shown in list_active_charts`);
     }
 
     // Add progress observation to action step
@@ -1043,10 +1067,18 @@ Current Reality: "${currentReality}"
 
   async updateActionStepTitle(actionStepName: string, newTitle: string): Promise<void> {
     const graph = await this.loadGraph();
-    const actionStepEntity = graph.entities.find(e => e.name === actionStepName);
+    let actionStepEntity = graph.entities.find(e => e.name === actionStepName);
+    
+    // If not found by exact name, try matching by observation text (for natural language descriptions)
+    if (!actionStepEntity) {
+      actionStepEntity = graph.entities.find(e => 
+        (e.entityType === 'action_step' || e.entityType === 'desired_outcome') &&
+        e.observations.some(obs => obs === actionStepName || obs.toLowerCase().includes(actionStepName.toLowerCase()))
+      );
+    }
     
     if (!actionStepEntity) {
-      throw new Error(`Action step ${actionStepName} not found`);
+      throw new Error(`Action step "${actionStepName}" not found. Please use the exact action step description as shown in list_active_charts`);
     }
 
     // Replace the first observation (which is the action step title)
@@ -1187,9 +1219,18 @@ Action step: "${actionStepTitle}"
     const graph = await this.loadGraph();
     
     // Find the action step (which is actually a telescoped chart's desired outcome)
-    const actionStepEntity = graph.entities.find(e => e.name === actionStepName);
+    let actionStepEntity = graph.entities.find(e => e.name === actionStepName);
+    
+    // If not found by exact name, try matching by observation text (for natural language descriptions)
+    if (!actionStepEntity) {
+      actionStepEntity = graph.entities.find(e => 
+        (e.entityType === 'action_step' || e.entityType === 'desired_outcome') &&
+        e.observations.some(obs => obs === actionStepName || obs.toLowerCase().includes(actionStepName.toLowerCase()))
+      );
+    }
+    
     if (!actionStepEntity || !actionStepEntity.metadata?.chartId) {
-      throw new Error(`Action step ${actionStepName} not found`);
+      throw new Error(`Action step "${actionStepName}" not found. Please use the exact action step description as shown in list_active_charts`);
     }
 
     const telescopedChartId = actionStepEntity.metadata.chartId;
@@ -1727,11 +1768,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "telescope_action_step",
-        description: "Break down an action step into a detailed structural tension chart. CRITICAL: Current reality must be an honest assessment of actual current state relative to this specific action step, NOT readiness or preparation statements. This maintains structural tension essential for creative advancement.",
+        description: "Break down an action step into a detailed structural tension chart. Pass the action step description text exactly as shown in list_active_charts output. CRITICAL: Current reality must be an honest assessment of actual current state relative to this specific action step, NOT readiness or preparation statements. This maintains structural tension essential for creative advancement.",
         inputSchema: {
           type: "object",
           properties: {
-            actionStepName: { type: "string", description: "Name of the action step to telescope" },
+            actionStepName: { type: "string", description: "The action step description text (e.g., 'Orient through Four Directions to discover role/character')" },
             newCurrentReality: { 
               type: "string", 
               description: "REQUIRED: Honest assessment of actual current state relative to this action step. Examples: 'Never used Django before', 'Completed models section, struggling with views'. AVOID: 'Ready to begin', 'Prepared to start'."
@@ -1747,11 +1788,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "mark_action_complete",
-        description: "Mark an action step as completed and update current reality",
+        description: "Mark an action step as completed and update current reality. Pass the action step description text exactly as shown in list_active_charts output.",
         inputSchema: {
           type: "object",
           properties: {
-            actionStepName: { type: "string", description: "Name of the completed action step" }
+            actionStepName: { type: "string", description: "The action step description text (e.g., 'Orient through Four Directions to discover role/character')" }
           },
           required: ["actionStepName"]
         }
@@ -1777,11 +1818,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "update_action_progress",
-        description: "Update progress on an action step without marking it complete, optionally updating current reality",
+        description: "Update progress on an action step without marking it complete, optionally updating current reality. Pass the action step description text exactly as shown in list_active_charts output.",
         inputSchema: {
           type: "object",
           properties: {
-            actionStepName: { type: "string", description: "Name of the action step to update progress for" },
+            actionStepName: { type: "string", description: "The action step description text (e.g., 'Orient through Four Directions to discover role/character')" },
             progressObservation: { type: "string", description: "Description of progress made on this action step" },
             updateCurrentReality: { 
               type: "boolean", 
@@ -1829,12 +1870,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "remove_action_step", 
-        description: "Remove an action step from a structural tension chart (deletes telescoped chart)",
+        description: "Remove an action step from a structural tension chart (deletes telescoped chart). Pass the action step description text exactly as shown in list_active_charts output.",
         inputSchema: {
           type: "object",
           properties: {
             parentChartId: { type: "string", description: "ID of the parent chart containing the action step" },
-            actionStepName: { type: "string", description: "Name of the action step to remove (telescoped chart's desired outcome name)" }
+            actionStepName: { type: "string", description: "The action step description text (e.g., 'Orient through Four Directions to discover role/character')" }
           },
           required: ["parentChartId", "actionStepName"]
         }
@@ -1853,11 +1894,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "update_action_step_title",
-        description: "Simple update of an action step's title. Much easier than complex observation editing.",
+        description: "Simple update of an action step's title. Pass the action step description text exactly as shown in list_active_charts output.",
         inputSchema: {
           type: "object",
           properties: {
-            actionStepName: { type: "string", description: "Name of the action step entity to update (e.g. 'chart_123_desired_outcome')" },
+            actionStepName: { type: "string", description: "The action step description text (e.g., 'Orient through Four Directions to discover role/character')" },
             newTitle: { type: "string", description: "New action step title" }
           },
           required: ["actionStepName", "newTitle"]

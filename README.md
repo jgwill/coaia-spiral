@@ -197,7 +197,7 @@ Benefits:
 ```javascript
 // Natural language: "Break down the Django tutorial step"
 {
-  "actionStepName": "chart_123_action_1",
+  "actionStepName": "Complete Django tutorial",
   "newCurrentReality": "Never used Django, familiar with Python basics"
 }
 ```
@@ -206,9 +206,11 @@ Benefits:
 ```javascript
 // Natural language: "I finished the Django tutorial"
 {
-  "actionStepName": "chart_123_action_1"
+  "actionStepName": "Complete Django tutorial"
 }
 ```
+
+**Note**: Action step names accept both human-readable descriptions (e.g., "Complete Django tutorial") and technical IDs (e.g., "chart_123_desired_outcome"). The system automatically matches the closest action step for you.
 
 ## Creative Orientation Principles
 
